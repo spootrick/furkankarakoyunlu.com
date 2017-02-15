@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Nedir bu VPN?İnternete güvenli bir şekilde bağlanmak mı istiyorsunuz? Starbucks, avm yada otel WIFI’ını kullanarak güvenemeyeceğiniz ortak bir ağdan mı bağlanmak zorundasınız? Tamam, işte aradığınız">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenVPN Kurulumu (Ubuntu 16.04)">
+<meta property="og:url" content="http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/index.html">
+<meta property="og:site_name" content="Furkan Karakoyunlu">
+<meta property="og:description" content="Nedir bu VPN?İnternete güvenli bir şekilde bağlanmak mı istiyorsunuz? Starbucks, avm yada otel WIFI’ını kullanarak güvenemeyeceğiniz ortak bir ağdan mı bağlanmak zorundasınız? Tamam, işte aradığınız">
+<meta property="og:image" content="https://furkankarakoyunlu.com/images/ubuntu_openvpn_kurulum.jpg">
+<meta property="og:updated_time" content="2017-02-15T16:26:59.482Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenVPN Kurulumu (Ubuntu 16.04)">
+<meta name="twitter:description" content="Nedir bu VPN?İnternete güvenli bir şekilde bağlanmak mı istiyorsunuz? Starbucks, avm yada otel WIFI’ını kullanarak güvenemeyeceğiniz ortak bir ağdan mı bağlanmak zorundasınız? Tamam, işte aradığınız">
+<meta name="twitter:image" content="https://furkankarakoyunlu.com/images/ubuntu_openvpn_kurulum.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>OpenVPN Kurulumu (Ubuntu 16.04)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/spootrick">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/ubuntu-server-setup/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&text=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&is_video=false&description=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=OpenVPN Kurulumu (Ubuntu 16.04)&body=Check out this article: http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&name=OpenVPN Kurulumu (Ubuntu 16.04)&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nedir-bu-VPN"><span class="toc-number">1.</span> <span class="toc-text">Nedir bu VPN?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gerekenler"><span class="toc-number">2.</span> <span class="toc-text">Gerekenler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenVPN-Kurulumu"><span class="toc-number">3.</span> <span class="toc-text">OpenVPN Kurulumu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CA-Dizini"><span class="toc-number">4.</span> <span class="toc-text">CA Dizini</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CA-Degiskenlerinin-Ayarlanmasi"><span class="toc-number">5.</span> <span class="toc-text">CA Değişkenlerinin Ayarlanması</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sertifika-Otoritesini-Olusturmak-CA"><span class="toc-number">6.</span> <span class="toc-text">Sertifika Otoritesini Oluşturmak (CA)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sunucu-Sertifikasi-Anahtar-ve-Sifreleme-Dosyalarini-Olusturmak"><span class="toc-number">7.</span> <span class="toc-text">Sunucu Sertifikası, Anahtar ve Şifreleme Dosyalarını Oluşturmak</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Istemci-Sertifikasi-ve-Anahtar-Cifti-Olusturma"><span class="toc-number">8.</span> <span class="toc-text">İstemci Sertifikası ve Anahtar Çifti Oluşturma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenVPN-Hizmetini-Yapilandirma"><span class="toc-number">9.</span> <span class="toc-text">OpenVPN Hizmetini Yapılandırma</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dosyalari-OpenVPN-Dizinine-Kopyalama"><span class="toc-number">9.1.</span> <span class="toc-text">Dosyaları OpenVPN Dizinine Kopyalama</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenVPN-Ayarlarinin-Yapilmasi"><span class="toc-number">9.2.</span> <span class="toc-text">OpenVPN Ayarlarının Yapılması</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        OpenVPN Kurulumu (Ubuntu 16.04)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Furkan Karakoyunlu</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-02-15T16:26:59.482Z" itemprop="datePublished">15 Feb 2017</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/OpenVPN/">OpenVPN</a>, <a class="tag-link" href="/tags/Ubuntu/">Ubuntu</a>, <a class="tag-link" href="/tags/Ubuntu-16-04/">Ubuntu 16.04</a>, <a class="tag-link" href="/tags/VPN/">VPN</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><img src="https://furkankarakoyunlu.com/images/ubuntu_openvpn_kurulum.jpg" alt="OpenVPN Server Setup Ubuntu 16.04"></p>
+<h2 id="Nedir-bu-VPN"><a href="#Nedir-bu-VPN" class="headerlink" title="Nedir bu VPN?"></a>Nedir bu VPN?</h2><p>İnternete güvenli bir şekilde bağlanmak mı istiyorsunuz? Starbucks, avm yada otel WIFI’ını kullanarak güvenemeyeceğiniz ortak bir ağdan mı bağlanmak zorundasınız? Tamam, işte aradığınız şey VPN! (Kime anlatıyorum ya, güzel ülkemizde sürekli internet yasakları yüzünden el kadar çocuklar bile VPN kullanır oldu. Sevinsek mi üzülsek mi bilmiyorum.)</p>
+<p>Bu yazımda ticari amaçlarla piyasaya sürülen VPN servisleri yerine aylık 5 dolar gibi cüzzi bir miktar ile kendinize ait bir VPN sunucusu kurmayı anlatmaya çalışacağım.</p>
+<p>Şimdi biraz daha teknik konulara girelim. VPN, yani Virtual Private Network adından da anlaşılacağı üzere sanal özel bir ağdır. Bu ağ aracılığı ile başka bir ağa fiziksel olarak bağlıymışsınız gibi o ağ üzerinden veri alışverişlerinde bulunabilirsiniz. Az laf çok iş hadi başlayalım.</p>
+<h2 id="Gerekenler"><a href="#Gerekenler" class="headerlink" title="Gerekenler"></a>Gerekenler</h2><p>Bu yazıyı takip edebilmeniz için size gerekenler;</p>
+<ul>
+<li>Ubuntu 16.04 Sunucu</li>
+<li>non-root <code>sudo</code> kullanıcı</li>
+<li>Firewall</li>
+</ul>
+<p>Eğer bu terimler size tanıdık gelmiyorsa <a href="https://furkankarakoyunlu.com/ubuntu-server-setup/">Ubuntu 16.04 Server Setup</a> yazımı okuyup kendinize yeni bir sunucu hazırlayabilirsiniz. Herşey tamam ama sunucuyu nereden bulacağız diyorsanız ben <a href="https://m.do.co/c/56e2f8751615" target="_blank" rel="external">DigitalOcean</a> servislerini kullanıyorum. Saatlik 0.007 dolar (aylık 5 dolara geliyor) harcayarak 512MB RAM, 1.8 GHz CPU, 20GB SSD ve aylık 1TB trafik hakkı olan bir sunucu kiralayabiliyorsunuz. DigitalOcean kullanımını başka bir yazımda ele alacağım. Bence gayet uygun. Eğer isterseniz başka servisler de var tabii; amazon aws, rackspace, vultr, … Seçim size kalmış.</p>
+<h2 id="OpenVPN-Kurulumu"><a href="#OpenVPN-Kurulumu" class="headerlink" title="OpenVPN Kurulumu"></a>OpenVPN Kurulumu</h2><p>Ubuntu’nun varsayılan repository’lerinde OpenVPN halihazırda bulunmakta. Kurmak için <code>apt</code> kullanabilirsiniz. OpenVPN’e ek olarak <code>easy-rsa</code> pakedini de yükleyelim ki VPN’imiz için dahili CA (certificate authority) kurmamızda yardımcı olsun.</p>
+<p>Önce sunucumuzdaki paket dizinini güncelleyelim<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get update &amp;&amp; sudo apt-get -y upgrade</div></pre></td></tr></table></figure></p>
+<p>şimdi gerekli paketleri yükleyebiliriz<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install openvpn easy-rsa</div></pre></td></tr></table></figure></p>
+<h2 id="CA-Dizini"><a href="#CA-Dizini" class="headerlink" title="CA Dizini"></a>CA Dizini</h2><p>OpenVPN, anahtar değişimi için SSL/TLS kullanan özel bir güvenlik protokolüne sahiptir. Yani sunucu ve istemciler arasındaki trafiği şifrelemek için sertifikalar kullanır. Bu güvenlik sertifikalarını çıkartabilmek için kendi CA’mızı kurmamız gerekecek.</p>
+<p>Öncelikle sertifikalarımız için ev dizinimizin içine <code>easy-rsa</code> şablonunu kullanarak bir sertifika dizini oluşturalım.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ make-cadir ~/openvpn-CA</div></pre></td></tr></table></figure></p>
+<h2 id="CA-Degiskenlerinin-Ayarlanmasi"><a href="#CA-Degiskenlerinin-Ayarlanmasi" class="headerlink" title="CA Değişkenlerinin Ayarlanması"></a>CA Değişkenlerinin Ayarlanması</h2><p>Az önce oluşturduğumuz dizinin içine girelim.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cd ~/openvpn-CA</div></pre></td></tr></table></figure></p>
+<p>CA’mızın kullanacağı değerleri ayarlamak için <code>vars</code> dosyasını düzenlememiz gerekecek. Bu dosyayı açalım:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ vi vars</div></pre></td></tr></table></figure></p>
+<p>Burada sertifikalarımızın nasıl oluşturulacağı ile ilgili bazı değişkenler bulunuyor. Bizim işimize yarayacak olan kısım dosyanın sonuna doğru bakacak olursak şu kısım:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line"># These are the default values for fields</div><div class="line"># which will be placed in the certificate.</div><div class="line"># Don&apos;t leave any of these fields blank.</div><div class="line">export KEY_COUNTRY=&quot;US&quot;</div><div class="line">export KEY_PROVINCE=&quot;CA&quot;</div><div class="line">export KEY_CITY=&quot;SanFrancisco&quot;</div><div class="line">export KEY_ORG=&quot;Fort-Funston&quot;</div><div class="line">export KEY_EMAIL=&quot;me@myhost.mydomain&quot;</div><div class="line">export KEY_OU=&quot;MyOrganizationalUnit&quot;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>Bu değerleri uygun şekilde değiştirelim:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">export KEY_COUNTRY=&quot;NL&quot;</div><div class="line">export KEY_PROVINCE=&quot;AMS&quot;</div><div class="line">export KEY_CITY=&quot;Amsterdam&quot;</div><div class="line">export KEY_ORG=&quot;Lahmacun LTD STI&quot;</div><div class="line">export KEY_EMAIL=&quot;furkankarakoyunlu@gmail.com&quot;</div><div class="line">export KEY_OU=&quot;N/A&quot;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>Buraya yazdığımız bilgiler sertifikamızda kullanılacak. Bunlara ek olarak <code>KEY_NAME</code> kısmını da değiştirmemiz lazım. Ben <code>kebap</code> olarak değiştireceğim.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export KEY_NAME=&quot;kebap&quot;</div></pre></td></tr></table></figure></p>
+<p>Gereken yerleri değiştirdikten sonra dosyayı kaydedip çıkabilirsiniz.</p>
+<h2 id="Sertifika-Otoritesini-Olusturmak-CA"><a href="#Sertifika-Otoritesini-Olusturmak-CA" class="headerlink" title="Sertifika Otoritesini Oluşturmak (CA)"></a>Sertifika Otoritesini Oluşturmak (CA)</h2><p>Bu adımda az önce ayarladığımız <code>vars</code> dosyasını <code>easy-rsa</code> ile kullanarak CA’mızı oluşturmak için kullanacağız.</p>
+<p>Oluşturduğumuz <code>openvpn-CA</code> klasörünün içindeyken aşağıdaki komutları girelim:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ source vars</div></pre></td></tr></table></figure></p>
+<p>Bu komut şu şekilde bir çıktı verecektir:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NOTE: If you run ./clean-all, I will be doing a rm -rf on /home/spootrick/openvpn-CA/keys</div></pre></td></tr></table></figure></p>
+<p>Temiz bir ortamda çalıştığımızdan emin olmak için şunu yazalım:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./clean-all</div></pre></td></tr></table></figure></p>
+<p>Şimdi aşağıdaki komutu yazarak kök CA (root CA)’mızı oluşturabiliriz.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./build-ca</div></pre></td></tr></table></figure></p>
+<p>Bu komut, kök CA (root CA) için sertifika ve anahtar oluşturma işlemini başlatacak. Komut ekranında size aşağıdaki gibi bazı seçimler soracak. Biz daha önceden <code>vars</code> dosyasında bu değişiklikleri yaptığımız için seçimleri <code>ENTER</code> tuşuyla onaylayıp geçebilirsiniz.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Generating a 2048 bit RSA private key</div><div class="line">..............................................+++</div><div class="line">....................................................................................................................................................................................................+++</div><div class="line">writing new private key to &apos;ca.key&apos;</div><div class="line">-----</div><div class="line">You are about to be asked to enter information that will be incorporated</div><div class="line">into your certificate request.</div><div class="line">What you are about to enter is what is called a Distinguished Name or a DN.</div><div class="line">There are quite a few fields but you can leave some blank</div><div class="line">For some fields there will be a default value,</div><div class="line">If you enter &apos;.&apos;, the field will be left blank.</div><div class="line">-----</div><div class="line">Country Name (2 letter code) [NL]:</div><div class="line">State or Province Name (full name) [AMS]:</div><div class="line">Locality Name (eg, city) [Amsterdam]:</div><div class="line">Organization Name (eg, company) [Lahmacun LTD STI]:</div><div class="line">Organizational Unit Name (eg, section) [N/A]:</div><div class="line">Common Name (eg, your name or your server&apos;s hostname) [Lahmacun LTD STI CA]:</div><div class="line">Name [kebap]:</div><div class="line">Email Address [furkankarakoyunlu@gmail.com]:</div></pre></td></tr></table></figure></p>
+<p>Bu aşamadan sonra gerekli diğer dosyaları oluşturmak için kullanacağımız CA’mızı oluşturmuş olduk.</p>
+<h2 id="Sunucu-Sertifikasi-Anahtar-ve-Sifreleme-Dosyalarini-Olusturmak"><a href="#Sunucu-Sertifikasi-Anahtar-ve-Sifreleme-Dosyalarini-Olusturmak" class="headerlink" title="Sunucu Sertifikası, Anahtar ve Şifreleme Dosyalarını Oluşturmak"></a>Sunucu Sertifikası, Anahtar ve Şifreleme Dosyalarını Oluşturmak</h2><p>Bu adımda sunucu sertifikamızı, anahtar çiftlerimizi ve şifreleme işlemi sırasında kullanılacak diğer dosyaları oluşturacağız.</p>
+<p>OpenVPN sunucu sertifikası ve anahtar çiftimizi oluşturmakla başlayalım.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./build-key-server kebap</div></pre></td></tr></table></figure></p>
+<p>Not: Eğer buradakinden farklı bir sunucu ismi seçtiyseniz bazı kısımları ayarlamanız gerekecek. Örneğin, oluşturduğumuz dosyaları <code>/etc/openvpn</code> dizinine kopyalarken koyduğunuz ismi ayarlamanız gerekecek. Aynı zamanda <code>/etc/openvpn/server.conf</code> dosyasını da geçerli <code>.crt</code> ve <code>.key</code> dosyalarına hedef göstermeniz gerekecek.</p>
+<p>Bu komutla birlikte bir sefer daha oluşturduğumuz sunucumuza göre (kebap) seçimlerimizi soracak. Varsayılan değerleri değiştirmeden <code>ENTER</code> tuşu ile geçebilirsiniz. Herhangi bir <code>challenge password</code> değeri girmeyin. Son olarak iki soruyu da <code>y</code> ile işaretleyerek sertifikamızı imzalayıp tamamlıyoruz. Çıktı şu şekilde olacak:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">Generating a 2048 bit RSA private key</div><div class="line">.....................+++</div><div class="line">..........................................................................................+++</div><div class="line">writing new private key to &apos;server.key&apos;</div><div class="line">-----</div><div class="line">You are about to be asked to enter information that will be incorporated</div><div class="line">into your certificate request.</div><div class="line">What you are about to enter is what is called a Distinguished Name or a DN.</div><div class="line">There are quite a few fields but you can leave some blank</div><div class="line">For some fields there will be a default value,</div><div class="line">If you enter &apos;.&apos;, the field will be left blank.</div><div class="line">-----</div><div class="line">Country Name (2 letter code) [NL]:</div><div class="line">State or Province Name (full name) [AMS]:</div><div class="line">Locality Name (eg, city) [Amsterdam]:</div><div class="line">Organization Name (eg, company) [Lahmacun LTD STI]:</div><div class="line">Organizational Unit Name (eg, section) [N/A]:</div><div class="line">Common Name (eg, your name or your server&apos;s hostname) [kebap]:</div><div class="line">Name [kebap]:</div><div class="line">Email Address [furkankarakoyunlu@gmail.com]:</div><div class="line"></div><div class="line">Please enter the following &apos;extra&apos; attributes</div><div class="line">to be sent with your certificate request</div><div class="line">A challenge password []:</div><div class="line">An optional company name []:</div><div class="line">Using configuration from /home/spootrick/openvpn-CA/openssl-1.0.0.cnf</div><div class="line">Check that the request matches the signature</div><div class="line">Signature ok</div><div class="line">The Subject&apos;s Distinguished Name is as follows</div><div class="line">countryName           :PRINTABLE:&apos;NL&apos;</div><div class="line">stateOrProvinceName   :PRINTABLE:&apos;AMS&apos;</div><div class="line">localityName          :PRINTABLE:&apos;Amsterdam&apos;</div><div class="line">organizationName      :PRINTABLE:&apos;Lahmacun LTD STI&apos;</div><div class="line">organizationalUnitName:PRINTABLE:&apos;N/A&apos;</div><div class="line">commonName            :PRINTABLE:&apos;kebap&apos;</div><div class="line">name                  :PRINTABLE:&apos;kebap&apos;</div><div class="line">emailAddress          :IA5STRING:&apos;furkankarakoyunlu@gmail.com&apos;</div><div class="line">Certificate is to be certified until Feb  3 15:28:52 2027 GMT (3650 days)</div><div class="line">Sign the certificate? [y/n]:y</div><div class="line"></div><div class="line"></div><div class="line">1 out of 1 certificate requests certified, commit? [y/n]y</div><div class="line">Write out database with 1 new entries</div><div class="line">Data Base Updated</div></pre></td></tr></table></figure></p>
+<p>Ardından, anahtar değişimi sırasında kullanmak üzere güçlü bir Diffie-Hellman anahtarları oluşturacağız. Şu şekilde:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./build-dh</div></pre></td></tr></table></figure></p>
+<p>Bu işlemin tamamlanması kullandığınız sunucunun gücüne bağlı olarak biraz zaman alabilir.</p>
+<p>Sonrasında sunucumuzun TLS bütünlük doğrulama kapasitesini güçlendirmek için HMAC (Hash-based message authentication code) imzası üreteceğiz.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ openvpn --genkey --secret keys/ta.key</div></pre></td></tr></table></figure></p>
+<h2 id="Istemci-Sertifikasi-ve-Anahtar-Cifti-Olusturma"><a href="#Istemci-Sertifikasi-ve-Anahtar-Cifti-Olusturma" class="headerlink" title="İstemci Sertifikası ve Anahtar Çifti Oluşturma"></a>İstemci Sertifikası ve Anahtar Çifti Oluşturma</h2><p>Şimdi sırada istemci serfitikası ve anahtar çifti oluşturma işlemleri var. Bu işlemleri istemci makinada yapıp daha sonra güvenlik amacıyla sunucu üzerinde imzalayabiliriz. Fakat anlatımın karışmaması için sunucu üzerinde oluşturup devam edeceğim.</p>
+<p>Bu adımda bir tane istemci için anahtar/sertifika oluşturacağım. Eğer birden fazla istemcinin VPN sunucumuza bağlanmasını istiyorsanız bu adımları istediğiniz kadar tekrar edebilirsiniz. Her istemci için farklı bir değer kullanmayı unutma!</p>
+<p>İlk istemcimizin adı <code>spootrickLaptop</code> olsun.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd ~/openvpn-CA</div><div class="line">$ source vars</div><div class="line">$ ./build-key spootrickLaptop</div></pre></td></tr></table></figure></p>
+<p>build komutunu bu şekilde kullandığımızda bağlantılar için şifre istemeyecek ve istemcimiz otomatik olarak VPN servisimize bağlanacaktır.</p>
+<p>Eğer şifreli bağlantılar oluşturmak istersek komutları şu şekilde girmemiz gerekir:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ cd ~/openvpn-CA</div><div class="line">$ source vars</div><div class="line">$ ./build-key-pass spootrickLaptop</div></pre></td></tr></table></figure></p>
+<p>yine karşımıza gelen varsayılan değerleri değiştirmeden hepsini <code>ENTER</code> ile geçebiliriz. Challenge password değerini boş bırakın! Son iki soruyu da <code>y</code> ile işaretleyerek sertifikamızı imzalayıp tamamlamış olduk.</p>
+<h2 id="OpenVPN-Hizmetini-Yapilandirma"><a href="#OpenVPN-Hizmetini-Yapilandirma" class="headerlink" title="OpenVPN Hizmetini Yapılandırma"></a>OpenVPN Hizmetini Yapılandırma</h2><p>Oluşturduğumuz kimlik bilgilerini ve dosyaları kullanrak OpenVPN hizmetimizi yapılandırmaya başlayabiliriz.</p>
+<h3 id="Dosyalari-OpenVPN-Dizinine-Kopyalama"><a href="#Dosyalari-OpenVPN-Dizinine-Kopyalama" class="headerlink" title="Dosyaları OpenVPN Dizinine Kopyalama"></a>Dosyaları OpenVPN Dizinine Kopyalama</h3><p>Bu adımda ihtiyacımız olan dosyaları <code>/etc/openvpn</code> yapılandırma dizinine kopyalayacağız.</p>
+<p>Bundan önceki adımlarda oluşturmuş olduğumuz dosyaları kopyalamamız gerekiyor. Bu dosyalar <code>~/openvpn-CA/keys</code> dizininde. Kopyalamamız gereken dosyalar şunlar:</p>
+<ul>
+<li><code>ca.crt</code>      (CA sertifikası)</li>
+<li><code>ca.key</code>      (CA anahtarı)</li>
+<li><code>kebap.crt</code>   (sunucumuzun sertifikası)</li>
+<li><code>kebap.key</code>   (sunucumuzun anahtarı)</li>
+<li><code>ta.key</code>      (HMAC imzası)</li>
+<li><code>dh2048.pem</code>  (Diffie-Hellman dosyamız)<br>Bunun için şu komutu girelim:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo cp ~/openvpn-CA/keys/&#123;ca.crt,ca.key,kebap.crt,kebap.key,ta.key,dh2048.pem&#125; /etc/openvpn</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Dosyaların kopyalandığını şu komutla kontrol edebilirsiniz:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls /etc/openvpn</div></pre></td></tr></table></figure></p>
+<p>Kopyaladığınız dosyaları göreceksiniz.</p>
+<p>Şimdi OpenVPN örnek ayar dosyasını zipten çıkarıp ayar yapacağımız dizine kopyalayalım. Bu şekilde kurulumumuzda temel olarak bu dosyayı kullanmış olacağız.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz | sudo tee /etc/openvpn/kebap.conf</div></pre></td></tr></table></figure></p>
+<p>Dosyamızın kopyalandığını doğrulayalım:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls /etc/openvpn | grep kebap.conf</div></pre></td></tr></table></figure></p>
+<p>dosyayı görüyorsanız işlem tamam.</p>
+<h3 id="OpenVPN-Ayarlarinin-Yapilmasi"><a href="#OpenVPN-Ayarlarinin-Yapilmasi" class="headerlink" title="OpenVPN Ayarlarının Yapılması"></a>OpenVPN Ayarlarının Yapılması</h3><p>Kopyaladığımız dosyaları düzenleyelim.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo vi /etc/openvpn/kebap.conf</div></pre></td></tr></table></figure></p>
+<p>İlk olarak HMAC ayarlarını bulalım. Bunun için <code>tls-auth</code> kısmına bakın. Aşağıdaki satırı bulun<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">;tls-auth ta.key 0 # This file is secret</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>Satır başındaki <code>;</code> işaretini silin ve hemen altına <code>key-direction 0</code> satırını ekleyin. Şu şekilde gözükecek:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">tls-auth ta.key 0 # This file is secret</div><div class="line">key-direction 0</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>devam edeceğiz :)</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/spootrick">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nedir-bu-VPN"><span class="toc-number">1.</span> <span class="toc-text">Nedir bu VPN?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gerekenler"><span class="toc-number">2.</span> <span class="toc-text">Gerekenler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenVPN-Kurulumu"><span class="toc-number">3.</span> <span class="toc-text">OpenVPN Kurulumu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CA-Dizini"><span class="toc-number">4.</span> <span class="toc-text">CA Dizini</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CA-Degiskenlerinin-Ayarlanmasi"><span class="toc-number">5.</span> <span class="toc-text">CA Değişkenlerinin Ayarlanması</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sertifika-Otoritesini-Olusturmak-CA"><span class="toc-number">6.</span> <span class="toc-text">Sertifika Otoritesini Oluşturmak (CA)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sunucu-Sertifikasi-Anahtar-ve-Sifreleme-Dosyalarini-Olusturmak"><span class="toc-number">7.</span> <span class="toc-text">Sunucu Sertifikası, Anahtar ve Şifreleme Dosyalarını Oluşturmak</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Istemci-Sertifikasi-ve-Anahtar-Cifti-Olusturma"><span class="toc-number">8.</span> <span class="toc-text">İstemci Sertifikası ve Anahtar Çifti Oluşturma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenVPN-Hizmetini-Yapilandirma"><span class="toc-number">9.</span> <span class="toc-text">OpenVPN Hizmetini Yapılandırma</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dosyalari-OpenVPN-Dizinine-Kopyalama"><span class="toc-number">9.1.</span> <span class="toc-text">Dosyaları OpenVPN Dizinine Kopyalama</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenVPN-Ayarlarinin-Yapilmasi"><span class="toc-number">9.2.</span> <span class="toc-text">OpenVPN Ayarlarının Yapılması</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&text=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&is_video=false&description=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=OpenVPN Kurulumu (Ubuntu 16.04)&body=Check out this article: http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&title=OpenVPN Kurulumu (Ubuntu 16.04)"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/&name=OpenVPN Kurulumu (Ubuntu 16.04)&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Furkan Karakoyunlu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/spootrick">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-90979308-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'spootrick';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>
