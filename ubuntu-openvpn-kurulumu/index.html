@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Furkan Karakoyunlu">
 <meta property="og:description" content="Nedir bu VPN?İnternete güvenli bir şekilde bağlanmak mı istiyorsunuz? Starbucks, avm yada otel WIFI’ını kullanarak güvenemeyeceğiniz ortak bir ağdan mı bağlanmak zorundasınız? Tamam, işte aradığınız">
 <meta property="og:image" content="https://furkankarakoyunlu.com/images/ubuntu_openvpn_kurulum.jpg">
-<meta property="og:updated_time" content="2017-02-23T17:01:13.352Z">
+<meta property="og:updated_time" content="2017-02-23T17:09:12.860Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenVPN Kurulumu (Ubuntu 16.04)">
 <meta name="twitter:description" content="Nedir bu VPN?İnternete güvenli bir şekilde bağlanmak mı istiyorsunuz? Starbucks, avm yada otel WIFI’ını kullanarak güvenemeyeceğiniz ortak bir ağdan mı bağlanmak zorundasınız? Tamam, işte aradığınız">
@@ -125,7 +125,7 @@
       </span>
       
     <div class="postdate">
-        <time datetime="2017-02-23T17:01:13.352Z" itemprop="datePublished">23 Feb 2017</time>
+        <time datetime="2017-02-23T17:09:12.860Z" itemprop="datePublished">23 Feb 2017</time>
     </div>
 
 
@@ -192,9 +192,9 @@
 <li><code>kebap.crt</code>   (sunucumuzun sertifikası)</li>
 <li><code>kebap.key</code>   (sunucumuzun anahtarı)</li>
 <li><code>ta.key</code>      (HMAC imzası)</li>
-<li><code>dh2048.pem</code>  (Diffie-Hellman dosyamız)<br>Bunun için şu komutu girelim:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo cp ~/openvpn-CA/keys/&#123;ca.crt,ca.key,kebap.crt,kebap.key,ta.key,dh2048.pem&#125; /etc/openvpn</div></pre></td></tr></table></figure>
-</li>
+<li><code>dh2048.pem</code>  (Diffie-Hellman dosyamız)</li>
 </ul>
+<p>Bunun için şu komutu girelim:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo cp ~/openvpn-CA/keys/&#123;ca.crt,ca.key,kebap.crt,kebap.key,ta.key,dh2048.pem&#125; /etc/openvpn</div></pre></td></tr></table></figure></p>
 <p>Dosyaların kopyalandığını şu komutla kontrol edebilirsiniz:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls /etc/openvpn</div></pre></td></tr></table></figure></p>
 <p>Kopyaladığınız dosyaları göreceksiniz.</p>
 <p>Şimdi OpenVPN örnek ayar dosyasını zipten çıkarıp ayar yapacağımız dizine kopyalayalım. Bu şekilde kurulumumuzda temel olarak bu dosyayı kullanmış olacağız.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gunzip -c /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz | sudo tee /etc/openvpn/kebap.conf</div></pre></td></tr></table></figure></p>
@@ -252,7 +252,7 @@
 <p>sonrasında kaydedip kapatalım.</p>
 <p>Bu dosyayı çalıştırabilmek için izinleri ayarlayalım:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ chmod u+x ~/client-configs/make_config.sh</div></pre></td></tr></table></figure></p>
 <h2 id="Istemci-Ayarlarini-Olusturmak"><a href="#Istemci-Ayarlarini-Olusturmak" class="headerlink" title="İstemci Ayarlarını Oluşturmak"></a>İstemci Ayarlarını Oluşturmak</h2><p>Artık istemcilerimiz için ayar dosyalarını kolayca oluşturabiliriz.</p>
-<p>Eğer bu anlatımı takip ettiyseniz <a href="https://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/#İstemci-Sertifikası-ve-Anahtar-Çifti-Oluşturma">İstemci Sertifikası ve Anahtar Çifti Oluşturma</a> adımında <code>./build-key spootrickLaptop</code> komutunu kullanarak <code>spootrickLaptop</code> adında bir istemci sertifikası ve anahtarı oluşturmuştuk. (<code>spootrickLaptop.crt</code> ve <code>spootrickLaptop.key</code>)</p>
+<p>Eğer bu anlatımı takip ettiyseniz <a href="https://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/#Istemci-Sertifikasi-ve-Anahtar-Cifti-Olusturma">İstemci Sertifikası ve Anahtar Çifti Oluşturma</a> adımında <code>./build-key spootrickLaptop</code> komutunu kullanarak <code>spootrickLaptop</code> adında bir istemci sertifikası ve anahtarı oluşturmuştuk. (<code>spootrickLaptop.crt</code> ve <code>spootrickLaptop.key</code>)</p>
 <p>Şimdi az önce oluşturduğumuz <code>make_config.sh</code> scripti kullanarak <code>spootrickLaptop</code> için yapılandırma ayarlarını oluşturabiliriz.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd ~/client-configs</div><div class="line">$ ./make_config.sh spootrickLaptop</div></pre></td></tr></table></figure></p>
 <p>Bu komut <code>~/client-configs/files</code> yoluna <code>spootrickLaptop.ovpn</code> adında bir dosya oluşturacak.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls -lh ~/client-configs/files</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-rw-rw-r-- 1 spootrick spootrick 13K Feb 21 16:40 spootrickLaptop.ovpn</div></pre></td></tr></table></figure>
@@ -300,8 +300,8 @@
 <p>Bu işlemler ile önceden oluşturduğunuz bütün sertifikaları iptal edebilirsiniz.</p>
 <h2 id="Yeni-Istemci-Ekleme"><a href="#Yeni-Istemci-Ekleme" class="headerlink" title="Yeni İstemci Ekleme"></a>Yeni İstemci Ekleme</h2><p>Daha fazla istemci eklemek için şu adımları takip edebilirsin:</p>
 <ul>
-<li><a href="https://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/#İstemci-Sertifikası-ve-Anahtar-Çifti-Oluşturma">İstemci Sertifikası ve Anahtar Çifti Oluşturma</a></li>
-<li><a href="https://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/#İstemci-Ayarlarını-Oluşturmak">İstemci Ayarlarını Oluşturmak</a></li>
+<li><a href="https://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/#Istemci-Sertifikasi-ve-Anahtar-Cifti-Olusturma">İstemci Sertifikası ve Anahtar Çifti Oluşturma</a></li>
+<li><a href="https://furkankarakoyunlu.com/ubuntu-openvpn-kurulumu/#Istemci-Ayarlarini-Olusturmak">İstemci Ayarlarını Oluşturmak</a></li>
 </ul>
 <p>adımlarını takip edebilirsin.</p>
 <p>Unutma her bir istemci için yeni bir sertifika kullanman lazım. Eğer aynı sertifikayı 2 ayrı cihazda kullanmaya çalışırsan cihazlardan birisi VPN servisine bağlanamayacaktır. Aynı anda bir sertifika ile sadece bir istemci bağlı kalabilir.</p>
