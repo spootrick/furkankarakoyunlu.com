@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Cron Job Banner
+IntroductionThe standard way of automating tasks in background on Unix-like system is to use cron jobs. It’s useful for scheduling tasks on your server or local machine. Our little fri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Use Cron Job?">
+<meta property="og:url" content="http://furkankarakoyunlu.com/how-to-use-cronjob/index.html">
+<meta property="og:site_name" content="Furkan Karakoyunlu">
+<meta property="og:description" content="Cron Job Banner
+IntroductionThe standard way of automating tasks in background on Unix-like system is to use cron jobs. It’s useful for scheduling tasks on your server or local machine. Our little fri">
+<meta property="og:updated_time" content="2017-03-02T13:56:21.942Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to Use Cron Job?">
+<meta name="twitter:description" content="Cron Job Banner
+IntroductionThe standard way of automating tasks in background on Unix-like system is to use cron jobs. It’s useful for scheduling tasks on your server or local machine. Our little fri">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>How to Use Cron Job?</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+    <link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    <script src="/lib/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/spootrick">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/ubuntu-openvpn-kurulumu/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://furkankarakoyunlu.com/how-to-use-cronjob/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&text=How to Use Cron Job?"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&is_video=false&description=How to Use Cron Job?"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How to Use Cron Job?&body=Check out this article: http://furkankarakoyunlu.com/how-to-use-cronjob/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&name=How to Use Cron Job?&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-Usage"><span class="toc-number">2.</span> <span class="toc-text">Basic Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced-Usage"><span class="toc-number">3.</span> <span class="toc-text">Advanced Usage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Syntax"><span class="toc-number">3.1.</span> <span class="toc-text">Syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Checking-Existing-Cron-Jobs"><span class="toc-number">3.2.</span> <span class="toc-text">Checking Existing Cron Jobs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-Tips"><span class="toc-number">4.</span> <span class="toc-text">Useful Tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">5.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index width mx-auto px2 my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        How to Use Cron Job?
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Furkan Karakoyunlu</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-03-02T13:56:21.000Z" itemprop="datePublished">02 Mar 2017</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Automate-tasks/">Automate tasks</a>, <a class="tag-link" href="/tags/Background-tasks/">Background tasks</a>, <a class="tag-link" href="/tags/Cron/">Cron</a>, <a class="tag-link" href="/tags/System-tools/">System tools</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><a href="https://furkankarakoyunlu.com/images/cron_job.jpg">Cron Job Banner</a></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The standard way of automating tasks in background on Unix-like system is to use cron jobs. It’s useful for scheduling tasks on your server or local machine. Our little friend, “cron” is a program (daemon) that runs in the background and allows us to schedule and run commands or scripts.</p>
+<p>If you are using Unix-like operating system, most likely “cron” is already installed on your system.</p>
+<h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><p>If you want to run a command or script daily, hourly, monthly or weekly, just put your script on one of these folders: <code>/etc/cron.daily</code>, <code>/etc/cron.hourly</code>, <code>/etc/cron.monthly</code>, <code>/etc/cron.weekly</code>.</p>
+<h2 id="Advanced-Usage"><a href="#Advanced-Usage" class="headerlink" title="Advanced Usage"></a>Advanced Usage</h2><p>If the basic usage is not enough for you, you can add more specific tasks by using cron syntax.</p>
+<p>You can specify tasks for instance, twice a month, every 10 minutes, every 8th minute on the hour, …</p>
+<h3 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h3><p>Here is an explanation:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">* * * * * command-to-execute</div><div class="line">│ │ │ │ │</div><div class="line">│ │ │ │ └──── day of week (0 - 6) (SUN - SAT)</div><div class="line">│ │ │ └────── month (1 - 12) (JAN - DEC)</div><div class="line">│ │ └──────── day of month (1 - 31)</div><div class="line">│ └────────── hour (0 - 23)</div><div class="line">└──────────── minute (0 - 59)</div></pre></td></tr></table></figure></p>
+<p>Now lets create a simple cron job. Type this to your terminal:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ crontab -e</div></pre></td></tr></table></figure></p>
+<p>If this is the first time that you are running this command it will ask you the editor you want:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">no crontab for spootrick - using an empty one</div><div class="line"></div><div class="line">Select an editor.  To change later, run &apos;select-editor&apos;.</div><div class="line">  1. /bin/ed</div><div class="line">  2. /bin/nano        &lt;---- easiest</div><div class="line">  3. /usr/bin/vim.basic</div><div class="line">  4. /usr/bin/vim.tiny</div><div class="line"></div><div class="line">Choose 1-4 [2]: 3</div></pre></td></tr></table></figure></p>
+<p>I’m continuing with vim. This will bring up a vim editor. Now we can type our schedule and command for each one on new line.</p>
+<p>When a cron job gets executed, the user’s e-mail adress will get an e-mail of the output unless it’s directed into a log file or <code>/dev/null</code>. If you want to get e-mails you can specify the <code>MAILTO</code> section in script. It will look like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">SHELL=/bin/bash</div><div class="line">MAILTO=”furkankarakoyunlu@gmail.com”</div><div class="line"># This will executed for every 30 minute</div><div class="line">30 * * * * echo ‘Hello’</div></pre></td></tr></table></figure></p>
+<p>If you don’t want e-mails, it will look like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">30 * * * * echo ‘Hello‘ &gt;&gt; /var/log/myCronLogFile.log</div></pre></td></tr></table></figure></p>
+<p>This will log the output to <code>/var/log/myCronLogFile.log</code></p>
+<p>If you want to pipe into empty location, it will look like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">30 * * * * echo ‘Hello‘ &gt;&gt; /dev/null 2&gt;&amp;1</div></pre></td></tr></table></figure></p>
+<p>If I give an example of a real life scenario, I’m using <a href="https://letsencrypt.org/" target="_blank" rel="external">Let’s Encrypt</a> certificate for my website’s SSL. Let’s Encrypt certificates are valid for 90 days. I’m using cron job to renew my certificate automatically. Let’s Encrypt has a renew command for certificate, so I’m using it like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">30 1 * * 1 /usr/bin/letsencrypt renew &gt;&gt; /var/log/le-renew.log</div><div class="line">35 1 * * 1 /bin/systemctl reload nginx</div></pre></td></tr></table></figure></p>
+<p>This cron job will execute <code>letsencrypt-auto renew</code> command on every Monday at 1:30 am and reload Nginx at 1:35 am. (5 min delay for renewed certificate)</p>
+<h3 id="Checking-Existing-Cron-Jobs"><a href="#Checking-Existing-Cron-Jobs" class="headerlink" title="Checking Existing Cron Jobs"></a>Checking Existing Cron Jobs</h3><p>To view your cron entries you can type:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ crontab -l</div></pre></td></tr></table></figure></p>
+<p>For root crontab:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo crontab -l</div></pre></td></tr></table></figure></p>
+<p>If you are superuser you can look at other users cron entries:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root$ crontab -u username -l</div></pre></td></tr></table></figure></p>
+<h2 id="Useful-Tips"><a href="#Useful-Tips" class="headerlink" title="Useful Tips"></a>Useful Tips</h2><table>
+<thead>
+<tr>
+<th>Schedule</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0 * * * * /path/script.sh</code></td>
+<td>Run script hourly</td>
+</tr>
+<tr>
+<td><code>0 0 * * * /path/script.sh</code></td>
+<td>Run script daily</td>
+</tr>
+<tr>
+<td><code>0 0 * * 0 /path/script.sh</code></td>
+<td>Run script weekly</td>
+</tr>
+<tr>
+<td><code>0 0 1 * * /path/script.sh</code></td>
+<td>Run script monthly</td>
+</tr>
+<tr>
+<td><code>0 0 1 1 * /path/script.sh</code></td>
+<td>Run script yearly</td>
+</tr>
+<tr>
+<td><code>* * * * * /path/script.sh</code></td>
+<td>Run script every minute</td>
+</tr>
+<tr>
+<td><code>*/4 * * * * /path/script.sh</code></td>
+<td>Run script every 15 minutes</td>
+</tr>
+<tr>
+<td><code>0 1 * * 1-5 /path/script.sh</code></td>
+<td>Run script on workdays on 1AM</td>
+</tr>
+<tr>
+<td><code>0 0,11 * * * /path/script.sh</code></td>
+<td>Run script on 0AM and 11AM</td>
+</tr>
+<tr>
+<td><code>*/4 2-6 * * * /path/script.sh</code></td>
+<td>Run script every 15 minutes between 2AM and 6AM</td>
+</tr>
+<tr>
+<td><code>30 0 * * * /path/script.sh &gt;&gt; /var/log/o.log</code></td>
+<td>Log output to file</td>
+</tr>
+</tbody>
+</table>
+<p>For more information you can look <a href="https://help.ubuntu.com/community/CronHowto" target="_blank" rel="external">CronHowto</a> or <code>man</code> pages.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Cron is a powerful tool when you need to automate processes. Understanding how to use it will save you time for other jobs.</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/spootrick">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-number">1.</span> <span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Basic-Usage"><span class="toc-number">2.</span> <span class="toc-text">Basic Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Advanced-Usage"><span class="toc-number">3.</span> <span class="toc-text">Advanced Usage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Syntax"><span class="toc-number">3.1.</span> <span class="toc-text">Syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Checking-Existing-Cron-Jobs"><span class="toc-number">3.2.</span> <span class="toc-text">Checking Existing Cron Jobs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-Tips"><span class="toc-number">4.</span> <span class="toc-text">Useful Tips</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-number">5.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://furkankarakoyunlu.com/how-to-use-cronjob/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&text=How to Use Cron Job?"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&is_video=false&description=How to Use Cron Job?"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How to Use Cron Job?&body=Check out this article: http://furkankarakoyunlu.com/how-to-use-cronjob/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&title=How to Use Cron Job?"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://furkankarakoyunlu.com/how-to-use-cronjob/&name=How to Use Cron Job?&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2017 Furkan Karakoyunlu
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/spootrick">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    <script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-90979308-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'spootrick';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
+</body>
+</html>
