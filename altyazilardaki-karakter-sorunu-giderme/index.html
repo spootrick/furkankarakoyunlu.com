@@ -14,7 +14,7 @@
 <meta property="og:description" content="İzleyeceğimiz film yada diziler için internetten bulduğumuz altyazılarda bazen Türkçe karakterler yukarıdaki örnek resimdeki gibi saçma şekilde görünebiliyor. Bu yazıda bu durumu nasıl düzeltebileceği">
 <meta property="og:image" content="https://furkankarakoyunlu.com/images/bozuk_altyazi.jpg">
 <meta property="og:image" content="https://furkankarakoyunlu.com/images/duzgun_altyazi.jpg">
-<meta property="og:updated_time" content="2017-03-11T17:12:39.130Z">
+<meta property="og:updated_time" content="2017-03-11T17:15:28.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Altyazılardaki Karakter Sorununu Giderme">
 <meta name="twitter:description" content="İzleyeceğimiz film yada diziler için internetten bulduğumuz altyazılarda bazen Türkçe karakterler yukarıdaki örnek resimdeki gibi saçma şekilde görünebiliyor. Bu yazıda bu durumu nasıl düzeltebileceği">
@@ -143,7 +143,7 @@
 
   <div class="content" itemprop="articleBody">
     <p><img src="https://furkankarakoyunlu.com/images/bozuk_altyazi.jpg" alt="Bozuk hal"><br><img src="https://furkankarakoyunlu.com/images/duzgun_altyazi.jpg" alt="Duzeltimlmis hal"><br>İzleyeceğimiz film yada diziler için internetten bulduğumuz altyazılarda bazen Türkçe karakterler yukarıdaki örnek resimdeki gibi saçma şekilde görünebiliyor. Bu yazıda bu durumu nasıl düzeltebileceğimizi göstereceğim. Bu sorunun birden fazla çözüm yolu var işte bunlardan birkaç tanesi ..</p>
-<h2 id="1-Yol-Terminal"><a href="#1-Yol-Terminal" class="headerlink" title="1. Yol: Terminal"></a>1. Yol: Terminal</h2><p>Eğer <code>\*NIX</code> tabanlı bir sisteme sahipseniz ve terminalle aranız iyiyse bu sorunun çözümü 1 satırlık kod kadar uzağınızda.</p>
+<h2 id="1-Yol-Terminal"><a href="#1-Yol-Terminal" class="headerlink" title="1. Yol: Terminal"></a>1. Yol: Terminal</h2><p>Eğer <code>*NIX</code> tabanlı bir sisteme sahipseniz ve terminalle aranız iyiyse bu sorunun çözümü 1 satırlık kod kadar uzağınızda.</p>
 <p>İşte kodumuz:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iconv -f ISO-8859-9 -t UTF-8 BOZUK_ALTYAZI.srt &gt; DUZELTILMIS_ALTYAZI.srt</div></pre></td></tr></table></figure></p>
 <p>Bu komutu çalıştırdıktan sonra karakter seti <code>UTF-8</code> ile değiştirilmiş altyazı dosyanız <code>DUZELTILMIS_ALTYAZI.srt</code> adında bulunduğunuz klasörde oluşturulacaktır. İşlem bu kadar iyi seyirler :)</p>
 <h2 id="2-Yol-Sublime-Text"><a href="#2-Yol-Sublime-Text" class="headerlink" title="2. Yol: Sublime Text"></a>2. Yol: Sublime Text</h2><p>Bu adımda bize yardım edecek olan metin editörü <a href="https://www.sublimetext.com" target="_blank" rel="external">Sublime Text</a>. Bu editörü kullanarak sorunu kolayca çözebilirsiniz. Verdiğim linkten tıklayarak bilgisayarınıza uygun olanı indirip kurun.</p>
