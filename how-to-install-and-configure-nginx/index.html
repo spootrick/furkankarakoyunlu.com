@@ -12,12 +12,12 @@
 <meta property="og:url" content="http://furkankarakoyunlu.com/how-to-install-and-configure-nginx/index.html">
 <meta property="og:site_name" content="Furkan Karakoyunlu">
 <meta property="og:description" content="How to install and configure NGINXIntroductionNginx is one of the most used web servers in the world. Nginx is responsible for hosting some of the largest web sites on the internet. In most case it is">
-<meta property="og:image" content="https://www.furkankarakoyunlu.com/ubuntu-server-setup/">
-<meta property="og:updated_time" content="2018-01-21T15:20:47.698Z">
+<meta property="og:image" content="https://furkankarakoyunlu.com/images/nginx-welcome-msg.png">
+<meta property="og:updated_time" content="2018-01-21T15:44:24.719Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to Install Nginx?">
 <meta name="twitter:description" content="How to install and configure NGINXIntroductionNginx is one of the most used web servers in the world. Nginx is responsible for hosting some of the largest web sites on the internet. In most case it is">
-<meta name="twitter:image" content="https://www.furkankarakoyunlu.com/ubuntu-server-setup/">
+<meta name="twitter:image" content="https://furkankarakoyunlu.com/images/nginx-welcome-msg.png">
     
     
         
@@ -144,7 +144,7 @@
     <h1 id="How-to-install-and-configure-NGINX"><a href="#How-to-install-and-configure-NGINX" class="headerlink" title="How to install and configure NGINX"></a>How to install and configure NGINX</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Nginx is one of the most used web servers in the world. Nginx is responsible for hosting some of the largest web sites on the internet. In most case it is more resource friendly than the Apache. It can be used both as web server and reverse proxy.</p>
 <p>In this guide, I will show how to install Nginx on Ubuntu 16.04 server.</p>
 <h2 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h2><ul>
-<li><img src="https://www.furkankarakoyunlu.com/ubuntu-server-setup/" alt="Ubuntu 16.04 server setup"></li>
+<li><a href="https://www.furkankarakoyunlu.com/ubuntu-server-setup/" target="_blank" rel="external">Ubuntu 16.04 server setup</a></li>
 <li>Non-root user with <code>sudo</code> privileges</li>
 </ul>
 <h2 id="1-Install-Nginx"><a href="#1-Install-Nginx" class="headerlink" title="1) Install Nginx"></a>1) Install Nginx</h2><p>Ubuntu default repositories includes nginx, so installation will be pretty straight forward.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install nginx</div></pre></td></tr></table></figure></p>
@@ -165,7 +165,7 @@
 <h2 id="3-Checking-the-WebServer"><a href="#3-Checking-the-WebServer" class="headerlink" title="3) Checking the WebServer"></a>3) Checking the WebServer</h2><p>At the end of the installation process, nginx will be running on our server. We can check it with <code>systemd</code> to make sure the nginx service is running.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ systemctl status nginx</div></pre></td></tr></table></figure></p>
 <p>The output will be like this:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">● nginx.service - A high performance web server and a reverse proxy server</div><div class="line">   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)</div><div class="line">   Active: active (running) since Mon 2017-07-24 18:30:39 UTC; 30min ago</div><div class="line"> Main PID: 2941 (nginx)</div><div class="line">   CGroup: /system.slice/nginx.service</div><div class="line">           ├─2941 nginx: master process /usr/sbin/nginx -g daemon on; master_process on</div><div class="line">           └─2942 nginx: worker process</div></pre></td></tr></table></figure></p>
 <p>Also you can check nginx from your web browser. Enter your servers IP adress to the address bar:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://your-server-ip-address</div></pre></td></tr></table></figure></p>
-<p>You should see the nginx welcome page.<br><img src="" alt="Nginx welcome page image"></p>
+<p>You should see the nginx welcome page.<br><img src="https://furkankarakoyunlu.com/images/nginx-welcome-msg.png" alt="Nginx welcome page image"></p>
 <h2 id="4-Managing-Nginx-Process-with-systemd"><a href="#4-Managing-Nginx-Process-with-systemd" class="headerlink" title="4) Managing Nginx Process with systemd"></a>4) Managing Nginx Process with systemd</h2><p>There are some basic management commands:</p>
 <p>These are pretty straight forward<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ sudo systemctl stop nginx</div><div class="line"></div><div class="line">$ sudo systemctl start nginx</div><div class="line"></div><div class="line">$ sudo systemctl restart nginx</div><div class="line"></div><div class="line">$ sudo systemctl reload nginx</div><div class="line"></div><div class="line">$ sudo systemctl disable nginx</div><div class="line"></div><div class="line">$ sudo systemctl enable nginx</div></pre></td></tr></table></figure></p>
 <h2 id="5-Getting-Know-the-Nginx-Files-and-Directories"><a href="#5-Getting-Know-the-Nginx-Files-and-Directories" class="headerlink" title="5) Getting Know the Nginx Files and Directories"></a>5) Getting Know the Nginx Files and Directories</h2><h3 id="Web-Server-Content"><a href="#Web-Server-Content" class="headerlink" title="Web Server Content"></a>Web Server Content</h3><p><code>/var/www/html</code> The content of the actual web page. This location can be changed with nginx configuration files.</p>
