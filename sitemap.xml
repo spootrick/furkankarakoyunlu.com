@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://furkankarakoyunlu.com/how-to-install-and-use-docker/</loc>
+    
+    <lastmod>2019-01-02T13:07:26.148Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://furkankarakoyunlu.com/how-to-install-and-configure-nginx/</loc>
     
     <lastmod>2018-01-21T15:44:24.719Z</lastmod>
